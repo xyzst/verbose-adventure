@@ -39,19 +39,58 @@
  * Object.create
  */
 
-var personProto = {
-  calculateAge: function() {
-    console.log(2019 - this.yearOfBirth);
-  }
+// var personProto = {
+//   calculateAge: function() {
+//     console.log(2019 - this.yearOfBirth);
+//   }
+// };
+
+// var john = Object.create(personProto);
+// john.name = "john";
+// john.yearOfBirth = 1990;
+// john.job = "teacher";
+
+// var jane = Object.create(personProto, {
+//   name: { value: "jane" },
+//   yearOfBirth: { value: 1969 },
+//   job: { value: "designer" }
+// });
+
+/**
+ * Primitives vs objects
+ * variables pointing to primitives have own copy
+ * objects do not have a copy but rather a reference to memory
+ */
+
+var a = 23;
+var b = a;
+
+a = 46;
+
+var obj = {
+  name: "john",
+  age: 26
 };
 
-var john = Object.create(personProto);
-john.name = "john";
-john.yearOfBirth = 1990;
-john.job = "teacher";
+// pointing to same exact object, changes to obj will cascade to obj2 (viceversa)
+var obj2 = obj;
+obj.age = 30;
 
-var jane = Object.create(personProto, {
-  name: { value: "jane" },
-  yearOfBirth: { value: 1969 },
-  job: { value: "designer" }
-});
+console.log(obj.age);
+console.log(obj2.age);
+
+// Functions
+var age = 27;
+var obj3 = {
+  name: "jonas",
+  city: "lisbon"
+};
+
+function change(a, b) {
+  a = 30;
+  b.city = "San Francisco";
+}
+
+change(age, obj3);
+console.log(age); // wont change, still be 27
+console.log(obj3.city); // city changed to san francisco
