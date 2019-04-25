@@ -32,7 +32,7 @@
 - Think of prototypes as "blueprints"
 - Prototype chaining
   - Process of going up the chain to look for a method
-    - looking for toString(): "john ❌ -> Person ❌ -> Object ✅"
+    - eg, looking for toString(): "john ❌ -> Person ❌ -> Object ✅"
 
 ## Summary
 
