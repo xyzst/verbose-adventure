@@ -49,3 +49,5 @@
     - Function behaves like any other object
     - Can store functions in a variable
     - Can pass a function as an argument to another function
+    - Can return function from a function
+    - "first class functions"

@@ -99,39 +99,66 @@
  * Passing functions as arguments
  */
 
-var years = [1990, 1965, 1937, 2005, 1998];
+// var years = [1990, 1965, 1937, 2005, 1998];
 
-function arrayCalc(arr, func) {
-  var arrResult = [];
-  for (var i = 0; i < arr.length; i++) {
-    arrResult.push(func(arr[i]));
-  }
-  return arrResult;
-}
+// function arrayCalc(arr, func) {
+//   var arrResult = [];
+//   for (var i = 0; i < arr.length; i++) {
+//     arrResult.push(func(arr[i]));
+//   }
+//   return arrResult;
+// }
+
+// /**
+//  * Callback function to calculate age
+//  * @param Number yr
+//  */
+// function calcAge(yr) {
+//   return 2019 - yr;
+// }
+
+// function isFullAge(e) {
+//   return e >= 18;
+// }
+
+// function maxHr(e) {
+//   if (e >= 18 && e <= 81) return Math.round(206.9 - 0.67 * e);
+
+//   return -1;
+// }
+
+// console.log(arrayCalc(years, calcAge));
+// console.log(years.map(x => 2019 - x));
+
+// console.log(arrayCalc(arrayCalc(years, calcAge), isFullAge));
+// console.log(years.map(x => 2019 - x).map(x => x >= 18));
+
+// console.log(arrayCalc(arrayCalc(years, calcAge), maxHr));
+// console.log(years.map(x => 2019 - x).map(x => maxHr(x)));
 
 /**
- * Callback function to calculate age
- * @param Number yr
+ * Functions returning functions
  */
-function calcAge(yr) {
-  return 2019 - yr;
+function interviewQuestion(job) {
+  switch (job) {
+    case "designer":
+      return function(name) {
+        console.log(name + ", can you please explain what UX design is?");
+      };
+    case "teacher":
+      return function(name) {
+        console.log(name + ", what subject do you teach?");
+      };
+    default:
+      return function(name) {
+        console.log("hello " + name + ", what do you do?");
+      };
+  }
 }
 
-function isFullAge(e) {
-  return e >= 18;
-}
-
-function maxHr(e) {
-  if (e >= 18 && e <= 81) return Math.round(206.9 - 0.67 * e);
-
-  return -1;
-}
-
-console.log(arrayCalc(years, calcAge));
-console.log(years.map(x => 2019 - x));
-
-console.log(arrayCalc(arrayCalc(years, calcAge), isFullAge));
-console.log(years.map(x => 2019 - x).map(x => x >= 18));
-
-console.log(arrayCalc(arrayCalc(years, calcAge), maxHr));
-console.log(years.map(x => 2019 - x).map(x => maxHr(x)));
+var designerQuestion = interviewQuestion("designer");
+designerQuestion("bob");
+var teacherQuestion = interviewQuestion("teacher");
+teacherQuestion("alice");
+var otherQuestion = interviewQuestion("rockstar");
+otherQuestion("johnny");
