@@ -162,3 +162,5 @@ var teacherQuestion = interviewQuestion("teacher");
 teacherQuestion("alice");
 var otherQuestion = interviewQuestion("rockstar");
 otherQuestion("johnny");
+
+interviewQuestion("scientist")("jack"); // immediately invoked
