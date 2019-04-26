@@ -139,28 +139,52 @@
 /**
  * Functions returning functions
  */
-function interviewQuestion(job) {
-  switch (job) {
-    case "designer":
-      return function(name) {
-        console.log(name + ", can you please explain what UX design is?");
-      };
-    case "teacher":
-      return function(name) {
-        console.log(name + ", what subject do you teach?");
-      };
-    default:
-      return function(name) {
-        console.log("hello " + name + ", what do you do?");
-      };
-  }
+// function interviewQuestion(job) {
+//   switch (job) {
+//     case "designer":
+//       return function(name) {
+//         console.log(name + ", can you please explain what UX design is?");
+//       };
+//     case "teacher":
+//       return function(name) {
+//         console.log(name + ", what subject do you teach?");
+//       };
+//     default:
+//       return function(name) {
+//         console.log("hello " + name + ", what do you do?");
+//       };
+//   }
+// }
+
+// var designerQuestion = interviewQuestion("designer");
+// designerQuestion("bob");
+// var teacherQuestion = interviewQuestion("teacher");
+// teacherQuestion("alice");
+// var otherQuestion = interviewQuestion("rockstar");
+// otherQuestion("johnny");
+
+// interviewQuestion("scientist")("jack"); // immediately invoked
+
+/**
+ * IIFE (Immediately invoked function expression)
+ */
+
+function game() {
+  var score = Math.random() * 10;
+  console.log(score >= 5);
 }
+game();
 
-var designerQuestion = interviewQuestion("designer");
-designerQuestion("bob");
-var teacherQuestion = interviewQuestion("teacher");
-teacherQuestion("alice");
-var otherQuestion = interviewQuestion("rockstar");
-otherQuestion("johnny");
+// Alternate way to do above with IIFE
+// defined variables in IIFE are effectively private
+(function() {
+  var score = Math.random() * 10;
+  console.log(score >= 5);
+})();
 
-interviewQuestion("scientist")("jack"); // immediately invoked
+// console.log(score); // error!
+
+(function(goodLuck) {
+  var score = Math.random() * 10;
+  console.log(score >= 5 - goodLuck);
+})(5);
