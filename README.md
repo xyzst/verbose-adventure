@@ -34,7 +34,7 @@
   - Process of going up the chain to look for a method
     - eg, looking for toString(): "john ❌ -> Person ❌ -> Object ✅"
 
-## Summary
+### Summary
 
 - Every Javascript object has a prototype property (makes inheritance possible)
 - Prototype property of an object is where we put methods and properties tha we want other objects to inherit
@@ -42,3 +42,10 @@
   - It's the prototpye of ALL instances created through it
 - When a certain method or property is called the search starts in the object itself before moving to the objects prototype
   - Process continues until method/property is found (prototype chaining)
+
+### Functions
+
+    - Function is an instance of the Object type
+    - Function behaves like any other object
+    - Can store functions in a variable
+    - Can pass a function as an argument to another function
