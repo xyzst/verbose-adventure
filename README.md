@@ -51,3 +51,7 @@
     - Can pass a function as an argument to another function
     - Can return function from a function
     - "first class functions"
+
+### Closures
+
+    - An inner function always has access to the variables and parameters of its outer function even after the outer function has returned
