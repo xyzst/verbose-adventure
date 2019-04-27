@@ -211,28 +211,113 @@
 // retirementIceland(1990);
 // retirement(66)(1990);
 
-function interviewQuestion(job) {
-  return function(name) {
-    switch (job) {
-      case "designer":
-        console.log(name + ", can you explain UX design?");
-        break;
-      case "teacher":
-        console.log("What subject do you teach, " + name + "?");
-        break;
-      default:
-        console.log("Hello " + name + ", what do you do?");
-        break;
-    }
-  };
-}
-// retirement(66)(1990);
+// function interviewQuestion(job) {
+//   return function(name) {
+//     switch (job) {
+//       case "designer":
+//         console.log(name + ", can you explain UX design?");
+//         break;
+//       case "teacher":
+//         console.log("What subject do you teach, " + name + "?");
+//         break;
+//       default:
+//         console.log("Hello " + name + ", what do you do?");
+//         break;
+//     }
+//   };
+// }
+// // retirement(66)(1990);
 
-var designer = interviewQuestion("designer");
-designer("bob");
-designer("alice");
-var teacher = interviewQuestion("teacher");
-teacher("angie");
-teacher("daniel");
-var driver = interviewQuestion("driver");
-driver("jack");
+// var designer = interviewQuestion("designer");
+// designer("bob");
+// designer("alice");
+// var teacher = interviewQuestion("teacher");
+// teacher("angie");
+// teacher("daniel");
+// var driver = interviewQuestion("driver");
+// driver("jack");
+
+/**
+ * Bind, call, apply
+ */
+
+var darren = {
+  name: "Darren",
+  age: 26,
+  job: "developer",
+  presentation: function(style, timeOfDay) {
+    if (style == "formal") {
+      console.log(
+        "Good " +
+          timeOfDay +
+          " gentlemen! I'm " +
+          this.name +
+          ", I'm a " +
+          this.job +
+          " and I'm " +
+          this.age +
+          " years old"
+      );
+    } else if (style == "friendly") {
+      console.log(
+        "Hey! What's up? " +
+          "I'm " +
+          this.name +
+          " I'm a " +
+          this.job +
+          " and I'm " +
+          this.age +
+          " years old. Have a nice " +
+          timeOfDay
+      );
+    }
+  }
+};
+
+var emily = {
+  name: "Emily",
+  age: 35,
+  job: "designer"
+};
+
+darren.presentation("formal", "morning");
+darren.presentation("friendly", "afternoon");
+
+// Another form of method borrowing
+darren.presentation.call(emily, "friendly", "afternoon");
+
+// darren.presentation.apply(emily, ['friendly', 'afternoon']) // only an example of apply, darren.presentation doesn't accept an array
+
+// Can use bind to set 'default' arguments
+// Also known as "currying", using preset parameters
+var darrenFriendly = darren.presentation.bind(darren, "friendly");
+darrenFriendly("morning");
+darrenFriendly("night");
+
+var emilyFormal = darren.presentation.bind(emily, "formal");
+emilyFormal("morning");
+emilyFormal("afternoon");
+
+var years = [1990, 1965, 1937, 2005, 1998];
+
+function arrayCalc(arr, fn) {
+  var arrRes = [];
+  for (var i = 0; i < arr.length; i++) {
+    arrRes.push(fn(arr[i]));
+  }
+  return arrRes;
+}
+
+function calculateAge(el) {
+  return 2019 - el;
+}
+
+function isFullAge(limit, el) {
+  return el >= limit;
+}
+
+var ages = arrayCalc(years, calculateAge);
+
+var fullJapan = arrayCalc(ages, isFullAge.bind(this, 20));
+console.log(fullJapan);
+console.log(ages);
