@@ -325,3 +325,60 @@
 /**
  * Coding Challenge
  */
+
+var Question = function(question, answers, correct) {
+  this.question = question;
+  this.answers = answers;
+  this.correct = correct;
+  this.score = 0;
+  this.randomQuestion = function(questions) {
+    do {
+      var rng = Math.floor(Math.random() * questions.length);
+      console.log(questions[rng].question);
+      for (var i = 0; i < questions[rng].answers.length; i++) {
+        console.log(i + ": " + questions[rng].answers[i]);
+      }
+      var userAnswer = prompt("Select the correct answer");
+      this.checkAnswer(userAnswer, questions[rng].correct);
+      if (userAnswer !== "exit") this.displayScore();
+    } while (userAnswer !== "exit");
+  };
+  this.checkAnswer = function(answer, correct) {
+    if (answer === "exit") {
+      console.log("Goodbye!");
+      this.score = 0;
+    } else if (answer == correct) {
+      console.log("Correct!");
+      this.updateScore(true);
+    } else {
+      console.log("Wrong!");
+      this.updateScore(false);
+    }
+  };
+  this.updateScore = function(result) {
+    if (result) {
+      this.score += 1;
+    } else {
+      this.score -= 1;
+    }
+  };
+  this.displayScore = function() {
+    console.log("Your current score is: " + this.score);
+  };
+};
+
+var bestRestaurant = new Question(
+  "Best Austin Restaurant?",
+  ["Trulucks", "Uchi", "Veracruz"],
+  0
+);
+
+var waterHoles = new Question(
+  "Best water hole in Austin?",
+  ["Hamilton Pool", "Barton Springs Pool", "Townlake"],
+  1
+);
+
+var questions = [waterHoles, bestRestaurant];
+
+waterHoles.randomQuestion(questions);
